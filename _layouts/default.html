@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: " en-US " }}">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container">
+        <section id="main_content">
+            <form class="wrap" name="bvDecode">
+                <textarea id="input" class="content" rows="10" placeholder="Paste code here..."></textarea>
+                <textarea id="output"></textarea>
+
+                <div class="config center">
+                    <input id="none" class="magic-radio" type="radio" value="" name="encode" checked>
+                    <label for="none">None</label>
+                    {% for opt in site.data.options %}
+                        <input id="{{ opt.key }}" class="magic-radio" type="radio" value="{{ opt.key }}" name="encode">
+                        <label for="{{ opt.key }}">{{ opt.name }}</label>
+                    {% endfor %}
+                    <input id="nicify" class="magic-radio" type="radio" value="nicify" name="encode" disabled>
+                    <label for="nicify">Unreadable</label>
+                </div>
+
+                <div class="config center">
+                    <input id="beautify" class="magic-checkbox" type="checkbox" name="beautify" checked>
+                    <label for="beautify">Beautify</label>
+                    <input id="highlight" class="magic-checkbox" type="checkbox" name="highlight" checked>
+                    <label for="highlight">Highlight</label>
+                    <input id="auto" class="magic-checkbox" type="checkbox" name="auto">
+                    <label for="auto">Auto</label>
+                </div>
+
+                <div class="center">
+                    <button id="copyjs" data-clipboard-target="#view" class="btn" type="button">
+                        Copy
+                    </button>
+                    <button id="redecode" class="btn" type="button">
+                        Continue decoding
+                    </button>
+                    <button id="clear" class="btn" type="reset">
+                        Clear
+                    </button>
+                </div>
+
+                <pre id="view" class="hljs">Please choose a right encoding type!</pre>
+            </form>
+        </section>
+    </div>
+
+    <script type="text/javascript" src="{{ '/assets/js/lib/clipboard-js/clipboard.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js?v=' | append: site.github.build_revision | relative_url }}" type="text/javascript"></script>
+</body>
+
+</html>
